@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Apply for License</title>
+    <style>
+        body {
+            font-size: 20px;
+            border: 2px solid black;
+            padding: 20px;
+            background-color: #f2f2f2;
+        }
+        .form-element {
+            margin-bottom: 15px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        input[type="submit"]:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <h1>Apply for License</h1>
+    <form action="/submit_application" method="post">
+        <h2>Personal Information</h2>
+
+        <div class="form-element">
+            <label for="name"><b>Name</b></label><br>
+            <input type="text" id="nameInput" name="name" value="<%= user.uname %>" readonly><br>
+        </div>
+
+        <div class="form-element">
+            <label for="contact_number"><b>Contact Number</b></label><br>
+            <input type="text" id="contactNumberInput" name="contact_number" value="<%= user.contact %>" readonly><br>
+        </div>
+
+        <div class="form-element">
+            <label for="email"><b>Email</b></label><br>
+            <input type="email" id="emailInput" name="email" value="<%= user.email %>" readonly><br>
+        </div>
+
+        
+        <div class="form-element">
+            <label for="age"><b>Age</b></label><br>
+            <input type="number" placeholder="Enter Age" name="age" required><br>
+        </div>
+
+        <div class="form-element">
+            <label for="gender"><b>Gender</b></label><br>
+            <select name="gender" required>
+                <option value="">Select...</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select><br>
+        </div>
+
+        <div class="form-element">
+            <label for="aadhaar_number"><b>Aadhaar Number</b></label><br>
+            <input type="text" placeholder="Enter Aadhaar Number" name="aadhaar_number" required><br>
+        </div>
+
+        
+
+        <h2>Vending Location and Time</h2>
+        <!-- Add a new field for the selected location -->
+        <div class="form-element">
+            <label for="location"><b>Selected Location</b></label><br>
+            <input type="text" id="locationInput" name="location" readonly><br>
+        </div>
+
+        <!-- Add a new field for the selected hotspot -->
+        <div class="form-element">
+            <label for="hotspot"><b>Selected Hotspot</b></label><br>
+            <input type="text" id="hotspotInput" name="hotspot" readonly><br>
+        </div>
+
+        <!-- Add a new field for the number of slots -->
+        <div class="form-element">
+            <label for="slots"><b>Number of Slots</b></label><br>
+            <input type="number" id="slotsInput" name="slots" readonly><br>
+        </div>
+
+        <!-- Add a new field for the vending date -->
+        <div class="form-element">
+            <label for="vending_date"><b>Vending Date</b></label><br>
+            <input type="date" name="vending_date" required><br>
+        </div>
+
+        <!-- Add a new field for the vending duration -->
+        <div class="form-element">
+            <label for="start_time"><b>Start Time</b></label><br>
+            <input type="time" name="start_time" required><br>
+        </div>
+
+        <div class="form-element">
+            <label for="end_time"><b>End Time</b></label><br>
+            <input type="time" name="end_time" required><br>
+        </div>
+
+    
+
+    <h2>Charge</h2>
+    <!-- Add a new field for the charge per hour -->
+    <div class="form-element">
+        <label for="charge_per_hour"><b>Charge per Hour</b></label><br>
+        <input type="number" placeholder="Enter the charge per hour" name="charge_per_hour" required><br>
+    </div>
+
+    <h2>Items Vending</h2>
+    <div class="form-element">
+        <label for="goods_category"><b>Goods Category</b></label><br>
+        <select name="goods_category" required>
+            <option value="">Select...</option>
+            <option value="eatable">Eatable Goods</option>
+            <option value="non_eatable">Non-Eatable Goods</option>
+        </select><br>
+    </div>
+
+    <div class="form-element">
+        <label for="specific_products"><b>Specific Products</b></label><br>
+        <input type="text" placeholder="Enter the specific products you will be vending" name="specific_products" required><br>
+    </div>
+
+    <!-- Add a submit button -->
+    <input type="submit" value="Submit Application">
+</form>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Get the selected location, hotspot, and slots from local storage
+        var location = localStorage.getItem("selectedLocation");
+        var hotspot = localStorage.getItem("selectedHotspot");
+        var slots = localStorage.getItem("selectedSlots");
+
+        // Update the input fields with the retrieved data
+        document.getElementById("locationInput").value = location;
+        document.getElementById("hotspotInput").value = hotspot;
+        document.getElementById("slotsInput").value = slots;
+    });
+</script>
+
+  
+    
+</body>
+</html> 
