@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socio-Hotspot Utilization Management System</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 20px;
+        }
+        .card {
+            margin-bottom: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .sub-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .options {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 40px;
+        }
+        .option {
+            cursor: pointer;
+            color:  #4CAF50;
+            text-decoration: underline;
+        }
+        .option:hover {
+            color:  #4CAF50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="header">Socio-Hotspot Utilization Management System</h1>
+        <h2 class="sub-header">User Profile</h2>
+        <div class="card">
+            <div class="card-header">
+                Welcome, <%= user.uname %>!
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Your Account Details</h5>
+                <p class="card-text">
+                    <strong>Name:</strong> <%= user.uname %><br>
+                    <strong>Contact Number:</strong> <%= user.contact %><br>
+                    <strong>Email:</strong> <%= user.email %><br>
+                </p>
+            </div>
+        </div>
+        <div class="options">
+            <a href="/vendingLoc" class="option">Book Vending Slot</a> 
+            <a href="/viewLicense" class="option">View License</a>
+        </div>        
+        
+    </div>
+
+    <!-- Include Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
