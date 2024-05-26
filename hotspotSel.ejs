@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Hotspots</title>
+    <script src="YourGooglemapAPI"></script> <!-- Replace YOUR_API_KEY with your actual API key -->
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f2f2f2;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+    <script>
+        function initMap() {
+            var urlParams = new URLSearchParams(window.location.search);
+            var location = urlParams.get('location');
+
+            // Display the location on the page
+            document.getElementById('location').textContent = location;
+
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 20, // Adjust the zoom level as needed
+                center: {lat: 30.3360941, lng: 77.9621531} // Default coordinates for Dehradun
+            });
+
+            // Define hotspots for each location
+  // You can replace these coordinates with the actual coordinates of your hotspots
+  var hotspots = {
+                'premnagar_market': [
+                    {lat: 30.3360941, lng: 77.9621531, slots: 3},
+                    {lat: 30.3360367, lng: 77.9624639, slots: 2},
+                    {lat: 30.3175, lng: 78.0332, slots: 2}
+                ],
+                'ballupur_chowk': [
+                    {lat: 30.3321716, lng: 78.0109801, slots: 3},
+                    {lat: 30.331534, lng: 78.0111073, slots: 2}
+                ],
+                'ghanta_ghar_market': [
+                    {lat: 30.3190, lng: 78.0347, slots: 2},
+                    {lat: 30.3195, lng: 78.0352, slots: 2}
+                ],
+                'rajpur_road': [
+                    {lat: 31.3200, lng: 78.0357, slots: 2},
+                    {lat: 30.3205, lng: 78.0362, slots: 2}
+                ]
+            };
+
+            // Fetch the user's data from the server
+            fetch('/account', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include', // Include cookies
+            })
+            .then(response => response.json())
+            .then(user => {
+                // Check if the user's location exists in hotspots
+                if (user.location in hotspots) {
+                    // Set the map's center to the user's location
+                    map.setCenter(hotspots[user.location][0]);
+                }
+            })
+            .catch(error => console.error('Error fetching user data:', error));
+
+            // Get the selected location from the URL parameters
+            var urlParams = new URLSearchParams(window.location.search);
+            var location = urlParams.get('location');
+
+            // Check if the selected location exists in hotspots
+            if (location in hotspots) {
+                // Set the map's center to the selected location's coordinates
+                map.setCenter(hotspots[location][0]);
+                
+                // Add markers for each hotspot in the selected location
+                for (var i = 0; i < hotspots[location].length; i++) {
+                    var marker = new google.maps.Marker({
+                        position: hotspots[location][i],
+                        map: map,
+                        label: "Hotspot " + (i + 1) // Add a label to each marker
+                    });
+
+                    // Add a click listener to each marker
+                    marker.addListener('click', function() {
+                        // Store the selected hotspot in local storage
+                        localStorage.setItem("selectedHotspot", this.label);
+
+                        // Prompt the user to enter the number of slots they want to book
+                        var slots;
+                        while (true) {
+                            slots = prompt("Enter the number of slots you want to book (1-" + hotspots[location][this.label.split(' ')[1] - 1].slots + "):");
+
+                            // Validate the number of slots
+                            if (slots >= 1 && slots <= hotspots[location][this.label.split(' ')[1] - 1].slots) {
+                                break;
+                            } else {
+                                alert("Invalid number of slots. Please enter a number between 1 and " + hotspots[location][this.label.split(' ')[1] - 1].slots + ".");
+                            }
+                        }
+
+                        localStorage.setItem("selectedSlots", slots);
+
+                       
+                         // Redirect to the license application page
+                        window.location.href = '/licenseApplication';
+                    });
+                }
+            }
+        }
+        
+    </script>
+</head>
+<body onload="initMap()">
+    <div class="container">
+        <h1>View Hotspots <span id="location"></span></h1>
+        <div id="map"></div> <!-- The map will be centered on the selected location -->
+    </div>
+</body>
+</html>
+
