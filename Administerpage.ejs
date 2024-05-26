@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Administer Page</title>
+  <style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+  </style>
+</head>
+<body>
+  <h1>Administer Page</h1>
+
+  <% if (applications && applications.length > 0) { %>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Aadhaar Number</th>
+        <th>Contact Number</th>
+        <th>Location</th>
+      </tr>
+      <% applications.forEach(function(application) { %>
+        <tr>
+          <td><%= application.name %></td>
+          <td><%= application.age %></td>
+          <td><%= application.gender %></td>
+          <td><%= application.aadhaar_number %></td>
+          <td><%= application.contact_number %></td>
+          <td><%= application.location %></td>
+        </tr>
+      <% }); %>
+    </table>
+  <% } else { %>
+    <p>No applications found.</p>
+  <% } %>
+</body>
+</html>
