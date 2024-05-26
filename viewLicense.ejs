@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View Licenses</title>
+    <style>
+        body {
+              font-family: Arial, Helvetica, sans-serif;
+              background-color: #f2f2f2;
+          }
+          .container {
+              width: 80%;
+              margin: 0 auto;
+              padding: 20px;
+          }
+          table {
+              width: 100%;
+              border-collapse: collapse;
+          }
+          th, td {
+              border: 1px solid #ddd;
+              padding: 8px;
+              text-align: left;
+          }
+          th {
+              background-color: #4CAF50;
+              color: white;
+              cursor: col-resize;
+          }
+      </style>
+</head>
+<body>
+    <h1>License Applications</h1>
+    <table>
+        <tr>
+             <!-- Table headers -->
+             
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Aadhaar Number</th>
+                <th>Contact Number</th>
+                <th>Email</th>
+                <th>Selected Location</th>
+                <th>Selected Hotspot</th>
+                <th>Number of Slots</th>
+                <th>Vending Date</th>
+                <th>Start Time</th>
+                <th>End Time</th>
+                <th>Charge per Hour</th>
+                <th>Total Amount</th>
+                <th>Goods Category</th>
+                <th>Specific Products</th>
+                
+            
+        </tr>
+        <% allLicenses.forEach(application => { %>
+            <tr>
+                <td><%= application.name %></td>
+                <td><%= application.age %></td>
+                <td><%= application.gender %></td>
+                <td><%= application.aadhaar_number %></td>
+                <td><%= application.contact_number %></td>
+                <td><%= application.email %></td>
+                <td><%= application.location %></td>
+                <td><%= application.hotspot %></td>
+                <td><%= application.slots %></td>
+                <td><%= application.vending_date %></td>
+                <td><%= application.start_time %></td>
+                <td><%= application.end_time %></td>
+                <td><%= application.charge_per_hour %></td>
+                <td><%= application.totalAmount %></td>
+                <td><%= application.goods_category %></td>
+                <td><%= application.specific_products %></td>
+                <td><%= application.totalAmount %></td>
+            </tr>
+        <% }); %>
+    </table>
+    <h1>Approved Licenses</h1>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>Aadhaar Number</th>
+            <th>Contact Number</th>
+            <th>Email</th>
+            <th>Selected Location</th>
+            <th>Selected Hotspot</th>
+            <th>Number of Slots</th>
+            <th>Vending Date</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Charge per Hour</th>
+            <th>Total Amount</th>
+            <th>Goods Category</th>
+            <th>Specific Products</th>
+            
+        </tr>
+        <% approvedLicenses.forEach(application => { %>
+            <tr>
+                <td><%= application.name %></td>
+                <td><%= application.age %></td>
+                <td><%= application.gender %></td>
+                <td><%= application.aadhaar_number %></td>
+                <td><%= application.contact_number %></td>
+                <td><%= application.email %></td>
+                <td><%= application.location %></td>
+                <td><%= application.hotspot %></td>
+                <td><%= application.slots %></td>
+                <td><%= application.vending_date %></td>
+                <td><%= application.start_time %></td>
+                <td><%= application.end_time %></td>
+                <td><%= application.charge_per_hour %></td>
+                <td><%= application.totalAmount %></td>
+                <td><%= application.goods_category %></td>
+                <td><%= application.specific_products %></td>
+                <td><%= application.totalAmount %></td>
+            </tr>
+        <% }); %>
+    </table>
+    
+
+</body>
+</html>
